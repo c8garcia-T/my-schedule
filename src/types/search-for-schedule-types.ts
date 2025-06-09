@@ -1,5 +1,8 @@
-export type Schedule = { schedule: any[]; invalidSearchResults: number };
-export type ClassEntry = {
+export interface Schedule {
+  schedule: any[];
+  invalidSearchResults: number;
+}
+export interface ClassEntry {
   level: string;
   room: string | null;
   subbingFor: string | null;
@@ -7,4 +10,4 @@ export type ClassEntry = {
   subject: string | null;
   period: number;
   timeInterval: string;
-};
+}
