@@ -4,7 +4,7 @@ export function Schedule({ scheduleData }: { scheduleData: ClassEntry[] }) {
   return scheduleData.map((classRecord, index) => {
     return (
       <div key={index + "class_record"} className="flex flex-col">
-        <span className="mb-4 flex flex-row gap-x-2 text-3xl">
+        <span className="mb-4 flex flex-row gap-x-2 text-2xl sm:text-3xl">
           <p>Period {classRecord.period}</p>
           <p>{classRecord.timeInterval}</p>
         </span>
