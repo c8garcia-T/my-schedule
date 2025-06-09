@@ -25,10 +25,10 @@ export default function Home() {
           placeholder="Type here"
           value={name}
           onChange={(event) => {
-            let nameInput = event.target.value;
+            const nameInput = event.target.value;
             if (nameInput.length > 1) {
-              let nameComponents = nameInput.split("");
-              let nameStandardized = `${nameComponents[0].toUpperCase()}${nameComponents.length > 1 ? nameComponents.slice(1, nameComponents.length).join("").toLocaleLowerCase() : ""}`;
+              const nameComponents = nameInput.split("");
+              const nameStandardized = `${nameComponents[0].toUpperCase()}${nameComponents.length > 1 ? nameComponents.slice(1, nameComponents.length).join("").toLocaleLowerCase() : ""}`;
               setName(nameStandardized);
             } else {
               setName(nameInput);
