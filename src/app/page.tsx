@@ -18,10 +18,10 @@ export default function Home() {
   return (
     <main className="m-2 flex flex-col">
       <h1 className="text text-center text-3xl">My Schedule 🍎</h1>
-      <div className="mx-auto my-4 flex flex-row items-center gap-x-2">
+      <div className="mx-auto my-4 flex w-2/3 flex-col justify-center gap-x-2 gap-y-2 sm:flex-row">
         <input
           type="text"
-          className="input input-primary"
+          className="input input-primary sm:input-md input-sm"
           placeholder="Type here"
           value={name}
           onChange={(event) => {
@@ -37,7 +37,7 @@ export default function Home() {
         />
         <input
           type="file"
-          className="file-input file-input-primary"
+          className="file-input file-input-primary file-input-xs sm:file-input-md"
           accept=".xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
           onChange={(event) => {
             const fileInput = event.target.files?.[0];
