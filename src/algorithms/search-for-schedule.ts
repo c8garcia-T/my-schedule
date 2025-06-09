@@ -1,4 +1,4 @@
-import { Schedule, ClassEntry } from "@/types/get-class-data-type";
+import { Schedule, ClassEntry } from "@/types/search-for-schedule-types";
 
 function computeClassEndTime(
   hour: number,
