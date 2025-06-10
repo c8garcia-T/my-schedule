@@ -21,6 +21,12 @@ export function Schedule({ scheduleData }: { scheduleData: ClassEntry[] }) {
                   Take Attendance
                 </div>
               )}
+              {classRecord.isLastClass && (
+                <div className="badge">
+                  <Bell className="mr-1 h-3 w-3" />
+                  Students&apos; Last Class
+                </div>
+              )}
             </span>
             <div className="mt-1 flex flex-row text-xl">
               <span className="w-1/3">
