@@ -4,11 +4,17 @@ import { searchForSchedule } from "@/algorithms/search-for-schedule";
 import { read, utils } from "xlsx";
 import { Schedule } from "@/ui/schedule";
 import { ClassEntry } from "@/types/search-for-schedule-types";
+import { DateTime } from "luxon";
+import { Calendar } from "lucide-react";
 
 export default function Home() {
   const [name, setName] = useState<string>("");
   const [fileData, setFileData] = useState<any[][] | null>(null);
   const [scheduleData, setScheduleData] = useState<ClassEntry[]>();
+  const [dateToday, setDateToday] = useState<string>();
+  useEffect(() => {
+    setDateToday(DateTime.local().toLocaleString(DateTime.DATE_FULL));
+  }, []);
   useEffect(() => {
     if (name && fileData) {
       setScheduleData(searchForSchedule(fileData, name).schedule);
@@ -17,7 +23,7 @@ export default function Home() {
 
   return (
     <main className="m-2 flex flex-col">
-      <h1 className="text text-center text-3xl">My Schedule 🍎</h1>
+      <h1 className="text text-center text-3xl">Hello!</h1>
       <div className="mx-auto my-4 flex w-2/3 flex-col justify-center gap-x-2 gap-y-2 sm:flex-row">
         <input
           type="text"
@@ -66,8 +72,24 @@ export default function Home() {
           }}
         />
       </div>
+      <div className="mx-auto flex max-w-xl flex-col sm:w-2/3">
+        <div className="mb-4 flex w-full flex-row items-center justify-between gap-x-2">
+          <div>
+            <h1 className="text-4xl font-bold">Today's Schedule</h1>
+            <p className="mt-1">{dateToday}</p>
+          </div>
+          {scheduleData && (
+            <div className="badge w-full max-w-fit">
+              <span className="inline-flex items-center">
+                <Calendar className="mr-1 h-4 w-4" />
+                <p>{`${scheduleData.length} Classes`}</p>
+              </span>
+            </div>
+          )}
+        </div>
 
-      {scheduleData && <Schedule scheduleData={scheduleData} />}
+        {scheduleData && <Schedule scheduleData={scheduleData} />}
+      </div>
     </main>
   );
 }
