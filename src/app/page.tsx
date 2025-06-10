@@ -75,7 +75,7 @@ export default function Home() {
       <div className="mx-auto flex max-w-xl flex-col sm:w-2/3">
         <div className="mb-4 flex w-full flex-row items-center justify-between gap-x-2">
           <div>
-            <h1 className="text-4xl font-bold">Today's Schedule</h1>
+            <h1 className="text-4xl font-bold">Today&apos;s Schedule</h1>
             <p className="mt-1">{dateToday}</p>
           </div>
           {scheduleData && (
