@@ -67,11 +67,7 @@ export default function Home() {
         />
       </div>
 
-      {scheduleData && (
-        <div className="w-full max-w-xl self-center sm:w-2/3">
-          <Schedule scheduleData={scheduleData} />
-        </div>
-      )}
+      {scheduleData && <Schedule scheduleData={scheduleData} />}
     </main>
   );
 }
