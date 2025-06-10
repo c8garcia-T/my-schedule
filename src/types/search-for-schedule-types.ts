@@ -10,4 +10,5 @@ export interface ClassEntry {
   subject: string | null;
   period: number;
   timeInterval: string;
+  isFirstClass: boolean;
 }
