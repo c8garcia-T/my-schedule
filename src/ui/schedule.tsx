@@ -24,15 +24,21 @@ export function Schedule({ scheduleData }: { scheduleData: ClassEntry[] }) {
             </span>
             <div className="mt-1 flex flex-row text-xl">
               <span className="w-1/3">
-                <p>Level</p>
+                <p className="font-medium">Level</p>
                 <p>{classRecord.level}</p>
               </span>
               <span className="w-1/3">
-                <p>Room</p>
-                <p>{classRecord.room}</p>
+                <span className="flex items-center gap-x-1">
+                  <MapPin className="h-5 w-5 text-green-500" />
+                  <p className="font-medium">Room</p>
+                </span>
+                <p className="">{classRecord.room}</p>
               </span>
               <span className="w-1/3">
-                <p>Subject</p>
+                <span className="flex items-center gap-x-1">
+                  <BookOpen className="h-4 w-4 text-blue-500" />
+                  <p className="font-medium">Subject</p>
+                </span>
                 <p>{classRecord.subject}</p>
               </span>
             </div>
