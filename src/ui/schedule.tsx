@@ -5,6 +5,14 @@ export function Schedule({ scheduleData }: { scheduleData: ClassEntry[] }) {
   return (
     <div className="w-full">
       {scheduleData.map((classRecord, index) => {
+        const nextClassPeriod = scheduleData[index + 1];
+        let emptyAdjacentPeriod;
+        if (
+          nextClassPeriod &&
+          nextClassPeriod.period !== classRecord.period + 1
+        ) {
+          emptyAdjacentPeriod = true;
+        }
         return (
           <div key={index + "class_record"} className="flex flex-col">
             <span>
@@ -49,6 +57,12 @@ export function Schedule({ scheduleData }: { scheduleData: ClassEntry[] }) {
               </span>
             </div>
             <div className="divider divider-primary"></div>
+            {emptyAdjacentPeriod && (
+              <>
+                <div>No Class</div>
+                <div className="divider divider-primary"></div>
+              </>
+            )}
           </div>
         );
       })}
