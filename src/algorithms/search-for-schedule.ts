@@ -16,7 +16,7 @@ function formatClassTime(hour: number, minutes: number) {
   const minutesStr = minutes.toString();
   const minutesFrmt =
     minutesStr.length === 1 ? minutesStr.padStart(2, "0") : minutesStr;
-  const timeStr = `${hour}:${minutesFrmt} PM`;
+  const timeStr = `${hour}:${minutesFrmt}`;
   return timeStr;
 }
 
@@ -65,7 +65,7 @@ export function searchForSchedule(data: any[][], name: string): Schedule {
             const classEndTime = computeClassEndTime(hour, minutes);
             const endHour = classEndTime.hour;
             const endMinutes = classEndTime.minutes;
-            timeInterval = `${formatClassTime(hour, minutes)} - ${formatClassTime(endHour, endMinutes)}`;
+            timeInterval = `${formatClassTime(hour, minutes)} - ${formatClassTime(endHour, endMinutes)} PM`;
             isFirstClass = searchIsFirstClass(
               data[rowIdx - 3][nameColumnIndx],
               rowIdx - 3,
