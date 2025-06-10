@@ -39,6 +39,25 @@ function searchIsFirstClass(
   return isFirst;
 }
 
+function searchIsLastClass(
+  classSearch: string,
+  currRowIndx: number,
+  leftIndxBoundary: number,
+  dataRef: any[][],
+): boolean {
+  let isLast = true;
+  for (let rowIdx = currRowIndx + 1; rowIdx < dataRef.length; rowIdx++) {
+    const rowSearch = dataRef[rowIdx].slice(leftIndxBoundary);
+    const searchRes = rowSearch.indexOf(classSearch);
+    if (searchRes !== -1) {
+      isLast = false;
+      break;
+    }
+  }
+
+  return isLast;
+}
+
 export function searchForSchedule(data: any[][], name: string): Schedule {
   let invalidSearchResults = 0;
   const schedule: ClassEntry[] = [];
@@ -48,6 +67,7 @@ export function searchForSchedule(data: any[][], name: string): Schedule {
     let period;
     let timeInterval;
     let isFirstClass;
+    let isLastClass;
     if (nameColumnIndx !== -1) {
       // Find the Period Column
       const periodRow = data[rowIdx - 3];
@@ -72,6 +92,12 @@ export function searchForSchedule(data: any[][], name: string): Schedule {
               colIdx,
               data,
             );
+            isLastClass = searchIsLastClass(
+              data[rowIdx - 3][nameColumnIndx],
+              rowIdx - 3,
+              colIdx,
+              data,
+            );
             break;
           }
         }
@@ -88,6 +114,7 @@ export function searchForSchedule(data: any[][], name: string): Schedule {
           period: period,
           timeInterval: timeInterval!, // timeInterval will always be generated if period is found.
           isFirstClass: isFirstClass!,
+          isLastClass: isLastClass!,
         };
         schedule.push(classEntry);
       } else {
