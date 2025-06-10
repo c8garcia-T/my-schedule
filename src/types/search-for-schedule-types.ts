@@ -11,4 +11,5 @@ export interface ClassEntry {
   period: number;
   timeInterval: string;
   isFirstClass: boolean;
+  isLastClass: boolean;
 }
