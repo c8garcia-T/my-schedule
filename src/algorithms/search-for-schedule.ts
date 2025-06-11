@@ -77,7 +77,7 @@ export function searchForSchedule(data: any[][], name: string): Schedule {
             period = periodRow[colIdx];
             const rawTime = periodRow[colIdx + 1] * 24;
             let hour = Math.floor(rawTime);
-            let minutes = Math.ceil((rawTime % 1) * 60);
+            let minutes = Math.round((rawTime % 1) * 60);
             if (minutes === 60) {
               hour++;
               minutes = 0;
