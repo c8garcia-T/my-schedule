@@ -23,13 +23,13 @@ export function Schedule({ scheduleData }: { scheduleData: ClassEntry[] }) {
                   <p>{classRecord.timeInterval}</p>
                 </div>
               </span>
-              {classRecord.isFirstClass && (
+              {classRecord.isFirstClass && classRecord.subject && (
                 <div className="badge">
                   <Bell className="mr-1 h-3 w-3" />
                   Take Attendance
                 </div>
               )}
-              {classRecord.isLastClass && (
+              {classRecord.isLastClass && classRecord.subject && (
                 <div className="badge">
                   <Bell className="mr-1 h-3 w-3" />
                   Students&apos; Last Class
@@ -41,20 +41,24 @@ export function Schedule({ scheduleData }: { scheduleData: ClassEntry[] }) {
                 <p className="font-medium">Level</p>
                 <p>{classRecord.level}</p>
               </span>
-              <span className="w-1/3">
-                <span className="flex items-center gap-x-1">
-                  <MapPin className="h-5 w-5 text-green-500" />
-                  <p className="font-medium">Room</p>
+              {classRecord.room && (
+                <span className="w-1/3">
+                  <span className="flex items-center gap-x-1">
+                    <MapPin className="h-5 w-5 text-green-500" />
+                    <p className="font-medium">Room</p>
+                  </span>
+                  <p className="">{classRecord.room}</p>
                 </span>
-                <p className="">{classRecord.room}</p>
-              </span>
-              <span className="w-1/3">
-                <span className="flex items-center gap-x-1">
-                  <BookOpen className="h-4 w-4 text-blue-500" />
-                  <p className="font-medium">Subject</p>
+              )}
+              {classRecord.subject && (
+                <span className="w-1/3">
+                  <span className="flex items-center gap-x-1">
+                    <BookOpen className="h-4 w-4 text-blue-500" />
+                    <p className="font-medium">Subject</p>
+                  </span>
+                  <p>{classRecord.subject}</p>
                 </span>
-                <p>{classRecord.subject}</p>
-              </span>
+              )}
             </div>
             <div className="divider divider-primary"></div>
             {emptyAdjacentPeriod && (
