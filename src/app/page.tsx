@@ -112,7 +112,9 @@ export default function Home() {
           <EmptySchedule name={debouncedName} />
         )}
 
-        {scheduleData && <Schedule scheduleData={scheduleData} />}
+        {scheduleData && debouncedName && (
+          <Schedule scheduleData={scheduleData} />
+        )}
       </div>
     </main>
   );
