@@ -109,7 +109,7 @@ export default function Home() {
           )}
         </div>
         {scheduleData && scheduleData.length === 0 && (
-          <EmptySchedule scheduleData={scheduleData} name={debouncedName} />
+          <EmptySchedule name={debouncedName} />
         )}
 
         {scheduleData && <Schedule scheduleData={scheduleData} />}
