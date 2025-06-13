@@ -14,10 +14,17 @@ export default function Home() {
   const [dateToday, setDateToday] = useState<string>();
   useEffect(() => {
     setDateToday(DateTime.local().toLocaleString(DateTime.DATE_FULL));
+    const nameSaved = localStorage.getItem("nameInput");
+    if (nameSaved) {
+      setName(nameSaved);
+    }
   }, []);
   useEffect(() => {
     if (name && fileData) {
-      setScheduleData(searchForSchedule(fileData, name).schedule);
+      setScheduleData(searchForSchedule(fileData, name.trim()).schedule);
+      try {
+        localStorage.setItem("nameInput", name.trim());
+      } catch (error) {}
     }
   }, [name, fileData]);
 
