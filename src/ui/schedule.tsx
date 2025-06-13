@@ -1,5 +1,5 @@
 import { ClassEntry } from "@/types/search-for-schedule-types";
-import { Clock, Bell, BookOpen, MapPin } from "lucide-react";
+import { Clock, Bell, BookOpen, MapPin, User } from "lucide-react";
 
 export function Schedule({ scheduleData }: { scheduleData: ClassEntry[] }) {
   return (
@@ -23,18 +23,26 @@ export function Schedule({ scheduleData }: { scheduleData: ClassEntry[] }) {
                   <p>{classRecord.timeInterval}</p>
                 </div>
               </span>
-              {classRecord.isFirstClass && classRecord.subject && (
-                <div className="badge">
-                  <Bell className="mr-1 h-3 w-3" />
-                  Take Attendance
-                </div>
-              )}
-              {classRecord.isLastClass && classRecord.subject && (
-                <div className="badge">
-                  <Bell className="mr-1 h-3 w-3" />
-                  Students&apos; Last Class
-                </div>
-              )}
+              <div className="flex gap-x-2">
+                {classRecord.isFirstClass && classRecord.subject && (
+                  <div className="badge">
+                    <Bell className="mr-1 h-3 w-3" />
+                    Take Attendance
+                  </div>
+                )}
+                {classRecord.isLastClass && classRecord.subject && (
+                  <div className="badge">
+                    <Bell className="mr-1 h-3 w-3" />
+                    Students&apos; Last Class
+                  </div>
+                )}
+                {classRecord.subbingFor && (
+                  <div className="badge">
+                    <User className="mr-1 h-3 w-3" />
+                    Subbing For: {classRecord.subbingFor}
+                  </div>
+                )}
+              </div>
             </span>
             <div className="mt-1 flex flex-row text-xl">
               <span className="w-1/3">
