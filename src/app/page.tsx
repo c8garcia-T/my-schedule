@@ -6,12 +6,15 @@ import { Schedule } from "@/ui/schedule";
 import { ClassEntry } from "@/types/search-for-schedule-types";
 import { DateTime } from "luxon";
 import { Calendar } from "lucide-react";
+import { EmptySchedule } from "@/ui/emptySchedule";
 
 export default function Home() {
   const [name, setName] = useState<string>("");
   const [fileData, setFileData] = useState<any[][] | null>(null);
   const [scheduleData, setScheduleData] = useState<ClassEntry[]>();
   const [dateToday, setDateToday] = useState<string>();
+  const [debouncedName, setDebouncedName] = useState(name);
+
   useEffect(() => {
     setDateToday(DateTime.local().toLocaleString(DateTime.DATE_FULL));
     const nameSaved = localStorage.getItem("nameInput");
@@ -20,13 +23,24 @@ export default function Home() {
     }
   }, []);
   useEffect(() => {
-    if (name && fileData) {
-      setScheduleData(searchForSchedule(fileData, name.trim()).schedule);
+    if (debouncedName && fileData) {
+      setScheduleData(
+        searchForSchedule(fileData, debouncedName.trim()).schedule,
+      );
       try {
-        localStorage.setItem("nameInput", name.trim());
+        localStorage.setItem("nameInput", debouncedName.trim());
       } catch (error) {}
     }
-  }, [name, fileData]);
+  }, [debouncedName, fileData]);
+
+  useEffect(() => {
+    const timeoutID = setTimeout(() => {
+      setDebouncedName(name);
+    }, 400);
+    return () => {
+      clearTimeout(timeoutID);
+    };
+  }, [name]);
 
   return (
     <main className="m-2 flex flex-col">
@@ -94,6 +108,9 @@ export default function Home() {
             </div>
           )}
         </div>
+        {scheduleData && scheduleData.length === 0 && (
+          <EmptySchedule scheduleData={scheduleData} name={debouncedName} />
+        )}
 
         {scheduleData && <Schedule scheduleData={scheduleData} />}
       </div>
